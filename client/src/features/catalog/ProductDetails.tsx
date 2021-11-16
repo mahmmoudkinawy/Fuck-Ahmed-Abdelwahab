@@ -23,7 +23,7 @@ export default function ProductDetails() {
   //     .then((response) => setProduct(response.data))
   //     .catch((error) => console.log(error))
   //     .finally(() => setLoading(false));
-  // });
+  // }, [id]);
 
   useEffect(() => {
     fetch(`http://localhost:5000/api/products/${id}`)
