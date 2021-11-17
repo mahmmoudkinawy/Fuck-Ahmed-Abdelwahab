@@ -14,6 +14,7 @@ import ContactPage from "../../features/contact/ContactPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Route } from "react-router-dom";
+import ServerError from "../errors/ServerError";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -42,6 +43,7 @@ function App() {
         <Route path="/catalog/:id" component={ProductDetails} />
         <Route path="/about" component={AboutPage} />
         <Route path="/contact" component={ContactPage} />
+        <Route path="/server-error" component={ServerError} />
       </Container>
     </ThemeProvider>
   );
