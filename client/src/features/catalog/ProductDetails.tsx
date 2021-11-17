@@ -14,12 +14,12 @@ import agent from "../../app/api/agent";
 import { Product } from "../../app/models/product";
 
 export default function ProductDetails() {
-  const { id } = useParams();
+  const { id } = useParams<{id: string}>();
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    agent.Catalog.details(Number(id))
+    agent.Catalog.details(parseInt(id))
       .then((response) => setProduct(response))
       .catch((error) => console.log(error))
       .finally(() => setLoading(false));
