@@ -31,7 +31,6 @@ axios.interceptors.response.use(
         toast.error(data.title);
         break;
       default:
-        toast.error("Something went wrong");
         break;
     }
     return Promise.reject(error.response);

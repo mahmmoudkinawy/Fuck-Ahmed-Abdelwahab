@@ -14,7 +14,7 @@ import agent from "../../app/api/agent";
 import { Product } from "../../app/models/product";
 
 export default function ProductDetails() {
-  const { id } = useParams<{id: string}>();
+  const { id } = useParams<{ id: string }>();
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
 
