@@ -51,7 +51,13 @@ export default function Header({ darkMode, handleThemeChange }: Props) {
         }}
       >
         <Box display="flex" alignItems="center">
-          <Typography variant="h6" component={NavLink} to="/" sx={navStyles}>
+          <Typography
+            variant="h6"
+            component={NavLink}
+            to="/"
+            exact
+            sx={navStyles}
+          >
             JULIA
           </Typography>
           <Switch checked={darkMode} onChange={handleThemeChange} />
@@ -65,7 +71,7 @@ export default function Header({ darkMode, handleThemeChange }: Props) {
           ))}
         </List>
 
-        <Box display='flex' alignItems='center'>
+        <Box display="flex" alignItems="center">
           <IconButton size="large" sx={{ color: "inherit" }}>
             <Badge badgeContent={4} color="secondary">
               <ShoppingCart />
