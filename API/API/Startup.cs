@@ -20,10 +20,11 @@ namespace API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
             services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
-            });
+        {
+            c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
+        });
             services.AddDbContext<StoreContext>(options =>
                 options.UseSqlite(_config.GetConnectionString("DefaultConnection")));
             services.AddCors();
@@ -44,7 +45,7 @@ namespace API
 
             app.UseRouting();
 
-            app.UseCors(opt => 
+            app.UseCors(opt =>
             {
                 opt.AllowAnyHeader()
                    .AllowAnyMethod()
