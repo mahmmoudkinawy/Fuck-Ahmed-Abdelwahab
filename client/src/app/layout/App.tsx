@@ -32,7 +32,9 @@ function App() {
       agent.Basket.get()
         .then((basket) => setBasket(basket))
         .catch((error) => console.log(error))
-        .finally(() => setLoading(false))
+        .finally(() => setLoading(false));
+    } else {
+      setLoading(false);
     }
   }, [setBasket]);
 
@@ -51,7 +53,7 @@ function App() {
     setDarkMode(!darkMode);
   }
 
-  if(loading) return <LoadingComponent message='Initialising app...' />
+  if (loading) return <LoadingComponent message="Initialising app..." />;
 
   return (
     <ThemeProvider theme={theme}>
