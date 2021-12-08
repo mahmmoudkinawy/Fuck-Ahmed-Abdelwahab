@@ -7,6 +7,7 @@ import {
   TableCell,
 } from "@mui/material";
 import { useStoreContext } from "../../app/context/StoreContext";
+import FormatCurrency from "../../app/util/FormatCurrency";
 
 export default function BasketSummary() {
   const { basket } = useStoreContext();
@@ -30,7 +31,9 @@ export default function BasketSummary() {
             </TableRow>
             <TableRow>
               <TableCell colSpan={2}>Total</TableCell>
-              <TableCell align="right">{subTotal + deliveryFee}</TableCell>
+              <TableCell align="right">
+                <FormatCurrency amount={subTotal + deliveryFee} />
+              </TableCell>
             </TableRow>
             <TableRow>
               <TableCell>

@@ -14,7 +14,7 @@ import agent from "../../app/api/agent";
 import NotFound from "../../app/errors/NotFound";
 import LoadingComponent from "../../app/layout/LoadingComponent";
 import { Product } from "../../app/models/product";
-import NumberFormat from 'react-number-format';
+import FormatCurrency from "../../app/util/FormatCurrency";
 
 export default function ProductDetails() {
   const { id } = useParams<{ id: string }>();
@@ -28,7 +28,7 @@ export default function ProductDetails() {
       .finally(() => setLoading(false));
   }, [id]);
 
-  if (loading) return <LoadingComponent message='Loading product...' />
+  if (loading) return <LoadingComponent message="Loading product..." />;
 
   if (!product) return <NotFound />;
 
@@ -45,7 +45,7 @@ export default function ProductDetails() {
         <Typography variant="h3">{product.name}</Typography>
         <Divider sx={{ mb: 2 }} />
         <Typography variant="h4" color="secondary">
-          <NumberFormat value={product.price} displayType={'text'} thousandSeparator={true} prefix={'$'} />
+          <FormatCurrency amount={product.price} />
         </Typography>
         <TableContainer>
           <Table>

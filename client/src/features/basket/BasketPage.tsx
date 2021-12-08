@@ -15,8 +15,8 @@ import { Box } from "@mui/system";
 import { useState } from "react";
 import agent from "../../app/api/agent";
 import { useStoreContext } from "../../app/context/StoreContext";
-import NumberFormat from "react-number-format";
 import BasketSummary from "./BasketSummary";
+import FormatCurrency from "../../app/util/FormatCurrency";
 
 export default function BasketPage() {
   const { basket, setBasket, removeItem } = useStoreContext();
@@ -74,12 +74,7 @@ export default function BasketPage() {
                   </Box>
                 </TableCell>
                 <TableCell align="right">
-                  <NumberFormat
-                    value={item.price}
-                    displayType={"text"}
-                    thousandSeparator={true}
-                    prefix={"$"}
-                  />
+                  <FormatCurrency amount={item.price} />
                 </TableCell>
                 <TableCell align="center">
                   <LoadingButton
@@ -111,12 +106,7 @@ export default function BasketPage() {
                   </LoadingButton>
                 </TableCell>
                 <TableCell align="right">
-                  <NumberFormat
-                    value={item.price * item.quantity}
-                    displayType={"text"}
-                    thousandSeparator={true}
-                    prefix={"$"}
-                  />
+                  <FormatCurrency amount={item.price * item.quantity} />
                 </TableCell>
                 <TableCell align="right">
                   <LoadingButton
