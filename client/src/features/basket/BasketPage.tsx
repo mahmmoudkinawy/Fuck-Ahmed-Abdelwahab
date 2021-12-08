@@ -51,7 +51,7 @@ export default function BasketPage() {
           <TableHead>
             <TableRow>
               <TableCell>Product</TableCell>
-              <TableCell align="right">Price</TableCell>
+              <TableCell align="center">Price</TableCell>
               <TableCell align="center">Quantity</TableCell>
               <TableCell align="right">Subtotal</TableCell>
               <TableCell align="right"></TableCell>
@@ -73,7 +73,7 @@ export default function BasketPage() {
                     <span>{item.name}</span>
                   </Box>
                 </TableCell>
-                <TableCell align="right">
+                <TableCell align="center">
                   {formatCurrency(item.price)}
                 </TableCell>
                 <TableCell align="center">
