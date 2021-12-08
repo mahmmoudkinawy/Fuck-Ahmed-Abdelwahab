@@ -55,7 +55,13 @@ export default function Header({ darkMode, handleThemeChange }: Props) {
         }}
       >
         <Box display="flex" alignItems="center">
-          <Typography variant="h6" exact component={NavLink} to="/" sx={navStyles}>
+          <Typography
+            variant="h6"
+            exact
+            component={NavLink}
+            to="/"
+            sx={navStyles}
+          >
             JULIA
           </Typography>
           <Switch checked={darkMode} onChange={handleThemeChange} />
