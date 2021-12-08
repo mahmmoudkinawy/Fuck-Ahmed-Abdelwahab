@@ -15,8 +15,8 @@ import { Box } from "@mui/system";
 import { useState } from "react";
 import agent from "../../app/api/agent";
 import { useStoreContext } from "../../app/context/StoreContext";
+import { formatCurrency } from "../../app/util/util";
 import BasketSummary from "./BasketSummary";
-import FormatCurrency from "../../app/util/FormatCurrency";
 
 export default function BasketPage() {
   const { basket, setBasket, removeItem } = useStoreContext();
@@ -74,7 +74,7 @@ export default function BasketPage() {
                   </Box>
                 </TableCell>
                 <TableCell align="right">
-                  <FormatCurrency amount={item.price} />
+                  {formatCurrency(item.price)}
                 </TableCell>
                 <TableCell align="center">
                   <LoadingButton
@@ -106,7 +106,7 @@ export default function BasketPage() {
                   </LoadingButton>
                 </TableCell>
                 <TableCell align="right">
-                  <FormatCurrency amount={item.price * item.quantity} />
+                  {formatCurrency(item.price * item.quantity)}
                 </TableCell>
                 <TableCell align="right">
                   <LoadingButton

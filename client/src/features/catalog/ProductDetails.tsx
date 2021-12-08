@@ -14,7 +14,7 @@ import agent from "../../app/api/agent";
 import NotFound from "../../app/errors/NotFound";
 import LoadingComponent from "../../app/layout/LoadingComponent";
 import { Product } from "../../app/models/product";
-import FormatCurrency from "../../app/util/FormatCurrency";
+import { formatCurrency } from "../../app/util/util";
 
 export default function ProductDetails() {
   const { id } = useParams<{ id: string }>();
@@ -45,7 +45,7 @@ export default function ProductDetails() {
         <Typography variant="h3">{product.name}</Typography>
         <Divider sx={{ mb: 2 }} />
         <Typography variant="h4" color="secondary">
-          <FormatCurrency amount={product.price} />
+          {formatCurrency(product.price)}
         </Typography>
         <TableContainer>
           <Table>
