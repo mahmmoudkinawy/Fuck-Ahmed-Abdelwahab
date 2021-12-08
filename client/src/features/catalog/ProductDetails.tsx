@@ -37,7 +37,7 @@ export default function ProductDetails() {
   }, [id, item]);
 
   function handleInputChange(event: any) {
-    if (event.target.value > 0) {
+    if (event.target.value >= 0) {
       setQuantity(parseInt(event.target.value));
     }
   }
@@ -117,7 +117,9 @@ export default function ProductDetails() {
           </Grid>
           <Grid item xs={6}>
             <LoadingButton
-              disabled={item?.quantity === quantity}
+              disabled={
+                item?.quantity === quantity || (!item && quantity === 0)
+              }
               loading={submitting}
               onClick={handleUpdateCart}
               sx={{ height: "55px" }}
