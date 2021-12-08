@@ -43,7 +43,7 @@ export default function BasketPage() {
 
   return (
     <TableContainer component={Paper}>
-      {basket && <Table sx={{ minWidth: 650 }}>
+      <Table sx={{ minWidth: 650 }}>
         <TableHead>
           <TableRow>
             <TableCell>Product</TableCell>
@@ -122,7 +122,7 @@ export default function BasketPage() {
             </TableRow>
           ))}
         </TableBody>
-      </Table>}
+      </Table>
     </TableContainer>
   );
 }
