@@ -14,6 +14,7 @@ import agent from "../../app/api/agent";
 import NotFound from "../../app/errors/NotFound";
 import LoadingComponent from "../../app/layout/LoadingComponent";
 import { Product } from "../../app/models/product";
+import NumberFormat from 'react-number-format';
 
 export default function ProductDetails() {
   const { id } = useParams<{ id: string }>();
@@ -44,8 +45,9 @@ export default function ProductDetails() {
         <Typography variant="h3">{product.name}</Typography>
         <Divider sx={{ mb: 2 }} />
         <Typography variant="h4" color="secondary">
-          {"$"}
-          {(product.price / 100).toFixed(2)}
+          {/* {"$"}
+          {(product.price / 100).toFixed(2)} */}
+          <NumberFormat value={product.price} displayType={'text'} thousandSeparator={true} prefix={'$'} />
         </Typography>
         <TableContainer>
           <Table>
