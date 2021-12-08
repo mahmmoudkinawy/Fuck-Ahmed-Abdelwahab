@@ -14,6 +14,7 @@ import { Box } from "@mui/system";
 import { useState } from "react";
 import agent from "../../app/api/agent";
 import { useStoreContext } from "../../app/context/StoreContext";
+import NumberFormat from "react-number-format";
 
 export default function BasketPage() {
   const { basket, setBasket, removeItem } = useStoreContext();
@@ -70,8 +71,12 @@ export default function BasketPage() {
                 </Box>
               </TableCell>
               <TableCell align="right">
-                {"$"}
-                {(item.price / 100).toFixed(2)}
+                <NumberFormat
+                  value={item.price}
+                  displayType={"text"}
+                  thousandSeparator={true}
+                  prefix={"$"}
+                />
               </TableCell>
               <TableCell align="center">
                 <LoadingButton
@@ -99,8 +104,12 @@ export default function BasketPage() {
                 </LoadingButton>
               </TableCell>
               <TableCell align="right">
-                {"$"}
-                {((item.price / 100) * item.quantity).toFixed(2)}
+                <NumberFormat
+                  value={item.price * item.quantity}
+                  displayType={"text"}
+                  thousandSeparator={true}
+                  prefix={"$"}
+                />
               </TableCell>
               <TableCell align="right">
                 <LoadingButton

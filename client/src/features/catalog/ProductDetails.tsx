@@ -45,8 +45,6 @@ export default function ProductDetails() {
         <Typography variant="h3">{product.name}</Typography>
         <Divider sx={{ mb: 2 }} />
         <Typography variant="h4" color="secondary">
-          {/* {"$"}
-          {(product.price / 100).toFixed(2)} */}
           <NumberFormat value={product.price} displayType={'text'} thousandSeparator={true} prefix={'$'} />
         </Typography>
         <TableContainer>
