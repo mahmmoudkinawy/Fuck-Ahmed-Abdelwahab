@@ -17,22 +17,25 @@ import { useStoreContext } from "../../app/context/StoreContext";
 
 export default function BasketPage() {
   const { basket, setBasket, removeItem } = useStoreContext();
-  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState({
+    loading: false,
+    name: "",
+  });
 
-  function handleAddItem(productId: number) {
-    setLoading(true);
+  function handleAddItem(productId: number, name: string) {
+    setStatus({ loading: true, name });
     agent.Basket.addItem(productId)
       .then((basket) => setBasket(basket))
       .catch((error) => console.log(error))
-      .finally(() => setLoading(false));
+      .finally(() => setStatus({ loading: false, name: "" }));
   }
 
-  function handleRemoveItem(productId: number, quantity = 1) {
-    setLoading(true);
+  function handleRemoveItem(productId: number, quantity = 1, name: string) {
+    setStatus({ loading: true, name });
     agent.Basket.removeItem(productId, quantity)
       .then(() => removeItem(productId, quantity))
       .catch((error) => console.log(error))
-      .finally(() => setLoading(false));
+      .finally(() => setStatus({ loading: false, name: "" }));
   }
 
   if (!basket)
@@ -40,7 +43,7 @@ export default function BasketPage() {
 
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }}>
+      {basket && <Table sx={{ minWidth: 650 }}>
         <TableHead>
           <TableRow>
             <TableCell>Product</TableCell>
@@ -72,16 +75,24 @@ export default function BasketPage() {
               </TableCell>
               <TableCell align="center">
                 <LoadingButton
-                  loading={loading}
-                  onClick={() => handleRemoveItem(item.productId)}
+                  loading={
+                    status.loading && status.name === "rem" + item.productId
+                  }
+                  onClick={() =>
+                    handleRemoveItem(item.productId, 1, "rem" + item.productId)
+                  }
                   color="error"
                 >
                   <Remove />
                 </LoadingButton>
                 {item.quantity}
                 <LoadingButton
-                  loading={loading}
-                  onClick={() => handleAddItem(item.productId)}
+                  loading={
+                    status.loading && status.name === "add" + item.productId
+                  }
+                  onClick={() =>
+                    handleAddItem(item.productId, "add" + item.productId)
+                  }
                   color="secondary"
                 >
                   <Add />
@@ -93,9 +104,15 @@ export default function BasketPage() {
               </TableCell>
               <TableCell align="right">
                 <LoadingButton
-                  loading={loading}
+                  loading={
+                    status.loading && status.name === "del" + item.productId
+                  }
                   onClick={() =>
-                    handleRemoveItem(item.productId, item.quantity)
+                    handleRemoveItem(
+                      item.productId,
+                      item.quantity,
+                      "del" + item.productId
+                    )
                   }
                   color="error"
                 >
@@ -105,7 +122,7 @@ export default function BasketPage() {
             </TableRow>
           ))}
         </TableBody>
-      </Table>
+      </Table>}
     </TableContainer>
   );
 }
