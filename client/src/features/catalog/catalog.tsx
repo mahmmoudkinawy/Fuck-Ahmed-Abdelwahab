@@ -9,6 +9,7 @@ import {
   fetchFilters,
   fetchProductsAsync,
   productSelectors,
+  setPageNumber,
   setProductParams,
 } from "./catalogSlice";
 import ProductList from "./ProductList";
@@ -86,7 +87,7 @@ export default function Catalog() {
         <AppPagination
           metaData={metaData}
           onPageChange={(page: number) =>
-            dispatch(setProductParams({ pageNumber: page }))
+            dispatch(setPageNumber({ pageNumber: page }))
           }
         />
       </Grid>
