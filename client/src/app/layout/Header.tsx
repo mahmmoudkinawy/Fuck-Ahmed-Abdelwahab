@@ -62,7 +62,7 @@ export default function Header({ darkMode, handleThemeChange }: Props) {
             to="/"
             sx={navStyles}
           >
-            JULIA
+            OUTFIT
           </Typography>
           <Switch checked={darkMode} onChange={handleThemeChange} />
         </Box>

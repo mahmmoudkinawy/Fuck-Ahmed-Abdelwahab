@@ -1,13 +1,11 @@
-import { Button, ButtonGroup, Typography } from "@mui/material";
-import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
-import { decrement, increment } from "./counterSlice";
+import { Typography } from "@mui/material";
 
 export default function ContactPage() {
-  const dispatch = useAppDispatch();
-  const { data, title } = useAppSelector((state) => state.counter);
+  // const dispatch = useAppDispatch();
+  // const { data, title } = useAppSelector((state) => state.counter);
   return (
     <>
-      <Typography variant="h2">{title}</Typography>
+      {/* <Typography variant="h2">{title}</Typography>
       <Typography variant="h5">The data is: {data}</Typography>
       <ButtonGroup>
         <Button
@@ -32,7 +30,9 @@ export default function ContactPage() {
         >
           Increment by 5
         </Button>
-      </ButtonGroup>
+      </ButtonGroup> */}
+
+      <Typography variant="h5">Contact Page</Typography>
     </>
   );
 }
