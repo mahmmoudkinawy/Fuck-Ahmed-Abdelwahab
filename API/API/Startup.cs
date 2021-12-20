@@ -30,7 +30,10 @@ namespace API
             services.AddDbContext<StoreContext>(options =>
                 options.UseSqlite(_config.GetConnectionString("DefaultConnection")));
             services.AddCors();
-            services.AddIdentityCore<User>()
+            services.AddIdentityCore<User>(opt =>
+            {
+                opt.User.RequireUniqueEmail = true;
+            })
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<StoreContext>();
             services.AddAuthentication();
@@ -61,7 +64,7 @@ namespace API
             });
 
             app.UseAuthentication();
-            
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
