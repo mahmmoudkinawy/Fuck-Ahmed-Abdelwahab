@@ -1,17 +1,15 @@
-import * as React from "react";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import Button from "@mui/material/Button";
-import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
-import { createTheme } from "@mui/material/styles";
 import AddressForm from "./AddressForm";
 import PaymentForm from "./PaymentForm";
 import Review from "./Review";
 import { FieldValues, FormProvider, useForm } from "react-hook-form";
+import { useState } from "react";
 
 const steps = ["Shipping address", "Payment details", "Review your order"];
 
@@ -30,7 +28,7 @@ function getStepContent(step: number) {
 
 export default function Checkout() {
   const methods = useForm();
-  const [activeStep, setActiveStep] = React.useState(0);
+  const [activeStep, setActiveStep] = useState(0);
 
   const handleNext = (data: FieldValues) => {
     if (activeStep === 0) {
