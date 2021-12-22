@@ -32,7 +32,9 @@ export default function ContactPage() {
         </Button>
       </ButtonGroup> */}
 
-      <Typography variant="h5">Contact Page</Typography>
+      <Typography style={{ textAlign: "center" }} variant="h5">
+        Contact Page - Under Construction
+      </Typography>
     </>
   );
 }

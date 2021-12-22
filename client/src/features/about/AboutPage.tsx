@@ -64,7 +64,18 @@ export default function AboutPage() {
         </Alert>
       )} */}
 
-      <Typography variant="h5">About Page - Under Construction</Typography>
+      <Typography style={{ textAlign: "center" }} variant="h5">
+        About Page - Under Construction
+      </Typography>
+
+      {/* <iframe
+        style={{ width: "560px", height: "600px" }}
+        src="https://www.youtube.com/embed/dKmnWzcR9dw"
+        title="YouTube video player"
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+      ></iframe> */}
     </Container>
   );
 }
