@@ -7,8 +7,10 @@ import {
   TableCell,
   TableBody,
   Button,
+  Typography,
 } from "@mui/material";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import agent from "../../app/api/agent";
 import LoadingComponent from "../../app/layout/LoadingComponent";
 import { Order } from "../../app/models/order";
@@ -27,15 +29,25 @@ export default function Orders() {
 
   if (loading) return <LoadingComponent message="Loading orders..." />;
 
+  if (orders!.length === 0)
+    return (
+      <Typography variant="h2" component="h2" style={{ textAlign: "center" }}>
+        You did not ask for Orders
+        <Button fullWidth component={Link} to="/catalog">
+          Go back to the shop
+        </Button>
+      </Typography>
+    );
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell>Order Number</TableCell>
-            <TableCell align="right">Total</TableCell>
+            <TableCell align="center">Total</TableCell>
             <TableCell align="right">Order Date</TableCell>
-            <TableCell align="right">Order Status</TableCell>
+            <TableCell align="center">Order Status</TableCell>
             <TableCell align="right"></TableCell>
           </TableRow>
         </TableHead>
@@ -48,11 +60,13 @@ export default function Orders() {
               <TableCell component="th" scope="row">
                 #{order.id}
               </TableCell>
-              <TableCell align="right">{formatCurrency(order.total)}</TableCell>
+              <TableCell align="center">
+                {formatCurrency(order.total)}
+              </TableCell>
               <TableCell align="right">
                 {order.orderDate.split("T")[0]}
               </TableCell>
-              <TableCell align="right">{order.orderStatus}</TableCell>
+              <TableCell align="center">{order.orderStatus}</TableCell>
               <TableCell align="right">
                 <Button>View</Button>
               </TableCell>
