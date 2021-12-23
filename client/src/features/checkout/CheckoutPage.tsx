@@ -10,6 +10,8 @@ import PaymentForm from "./PaymentForm";
 import Review from "./Review";
 import { FieldValues, FormProvider, useForm } from "react-hook-form";
 import { useState } from "react";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { validationShema } from "./checkoutValidation";
 
 const steps = ["Shipping address", "Payment details", "Review your order"];
 
@@ -27,7 +29,10 @@ function getStepContent(step: number) {
 }
 
 export default function Checkout() {
-  const methods = useForm();
+  const methods = useForm({
+    mode: "all",
+    resolver: yupResolver(validationShema),
+  });
   const [activeStep, setActiveStep] = useState(0);
 
   const handleNext = (data: FieldValues) => {
@@ -78,7 +83,12 @@ export default function Checkout() {
                     Back
                   </Button>
                 )}
-                <Button variant="contained" type="submit" sx={{ mt: 3, ml: 1 }}>
+                <Button
+                  variant="contained"
+                  type="submit"
+                  sx={{ mt: 3, ml: 1 }}
+                  disabled={!methods.formState.isValid}
+                >
                   {activeStep === steps.length - 1 ? "Place order" : "Next"}
                 </Button>
               </Box>
