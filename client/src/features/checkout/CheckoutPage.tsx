@@ -9,7 +9,7 @@ import AddressForm from "./AddressForm";
 import PaymentForm from "./PaymentForm";
 import Review from "./Review";
 import { FieldValues, FormProvider, useForm } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { validationShema } from "./checkoutValidation";
 import agent from "../../app/api/agent";
@@ -44,6 +44,18 @@ export default function Checkout() {
     mode: "all",
     resolver: yupResolver(currentValidationSchema),
   });
+
+  useEffect(() => {
+    agent.Account.fetchAddress().then((response) => {
+      if (response) {
+        methods.reset({
+          ...methods.getValues(),
+          ...response,
+          saveAddress: false,
+        });
+      }
+    });
+  }, [methods]);
 
   const handleNext = async (data: FieldValues) => {
     const { nameOnCard, saveAddress, ...shippingAddress } = data;
