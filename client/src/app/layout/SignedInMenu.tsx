@@ -31,7 +31,6 @@ export default function SignedInMenu() {
         onClose={handleClose}
         TransitionComponent={Fade}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
         <MenuItem component={Link} to="orders">
           My Orders
         </MenuItem>
